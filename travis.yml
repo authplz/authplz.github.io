@@ -1,0 +1,30 @@
+language: node_js
+sudo: false
+
+node_js:
+  - node
+
+install:
+  - npm install
+
+script:
+  - npm run build
+
+after_success:
+  - cd build && tar -cvf ../authplz-ui.tgz ./*
+
+deploy:
+  provider: releases
+  skip_cleanup: true
+  api_key:
+    secure: kd5EmEKq3zD4g9CSl9rQEN/AHAs9qpa86x8iNzwJDsoISvDQjf2CVCdPlbX1z/xItHycK46LENSPXgyqpKQDLjSIrIUZeB8vHei/RHWLkazb68WXf0cCk/AfWh0Ev3XvXUVACUBQqb/0XxDscMmstKD3jf1AkAGY0ZYt+JXA1a7idHso9ndmAFqgB3oYN8hTDfaqcws6zu5IJedeTt9y5CQ50dG25o3+d337/KMLVANwU9DIlt7neGIKkDgR6m19BFrdP7lnvUqnwZiV1dxTYVtRgbZvuTRjnq431UHdbZga9MPebWuzO+a278oq84LcV4PSd7d8evcfzeh1jyCaYVLnNg6myq8ct6EsIYFwniXRqyC1vg773Ik6y9EzssY4mf3vNoj5OvIlT6RLT7PEW3N9GObB86JqC9RGGY/2nInn6UXfE+3P9+Pq4GUDR8KD7ucuP9Ct8gIxRm5/7vNOHlAoU7cbzlp+d5pQw5E0H4OFLhvbyg8QLgPb9Qv+MTEMCFVe10ltOVJLDKFh276uDEuRRNszQaqBEHkjKPKjoVGnuEIowvEcs9redIDLxeKLO5lSKZwz1NLMYC6CzYq26pGV2CYs5YRLLMUh0l1+aCQ3FHbw8siO1f5lpMUqSKahckLseoQVKuaq+4q9SsQXKzAtum9pW2EFuvufqK7ra0A=
+  file: 
+  - authplz-ui.tgz
+  on:
+    repo: ryankurte/authplz-ui
+    branch: master
+    tags: true
+
+
+notifications:
+  email: false
